@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ur5_robotiq_parallel_bringup)/worlds/IROS.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+   
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot  -z 0.375 -Y 3.14 " respawn="false" output="screen" />
+
+  <include file="$(find ur5_robotiq_parallel_bringup)/launch/robot_bringup.launch">
+   <arg name="limited" value="$(arg limited)"/>
+  </include>
+
+  <!-- Add Coke can to the world -->
+  <!--node name="spawn_object" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/urdf/coke_can.urdf -model coke -x 0.745 -y -0.05 -z 0.55"
+   respawn="false" output="screen" /-->
+
+</launch>

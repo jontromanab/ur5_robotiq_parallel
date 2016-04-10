@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+ <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="robotiq_85_gripper_transmission" params="prefix">
+
+   <transmission name="${prefix}robotiq_85_left_knuckle_joint_transmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${prefix}robotiq_85_left_knuckle_joint">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="${prefix}robotiq_85_left_knuckle">
+			  
+			  <mechanicalReduction>1</mechanicalReduction>
+			  <motorTorqueConstant>1</motorTorqueConstant>
+			</actuator>
+		</transmission>
+ </xacro:macro>
+ </robot>
+
+

@@ -1,0 +1,1121 @@
+<sdf version='1.5'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+      <magnetic_field>5.5645e-06 2.28758e-05 -4.23884e-05</magnetic_field>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='table'>
+      <link name='table_top_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0.325 0 -0 0</pose>
+          <mass>5</mass>
+          <inertia>
+            <ixx>5.45</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2.45</iyy>
+            <iyz>0</iyz>
+            <izz>6.04</izz>
+          </inertia>
+        </inertial>
+        <collision name='table_top_link_collision'>
+          <pose frame=''>0 0 0.525 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 2 0.05</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>50</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='table_top_link_collision_leg1_link'>
+          <pose frame=''>0.5 1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>50</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+          </surface>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1000</mu>
+                <mu2>1000</mu2>
+              </ode>
+            </friction>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='table_top_link_collision_leg2_link'>
+          <pose frame=''>-0.5 1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>50</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+          </surface>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1000</mu>
+                <mu2>1000</mu2>
+              </ode>
+            </friction>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='table_top_link_collision_leg3_link'>
+          <pose frame=''>0.5 -1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>50</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+          </surface>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1000</mu>
+                <mu2>1000</mu2>
+              </ode>
+            </friction>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='table_top_link_collision_leg4_link'>
+          <pose frame=''>-0.5 -1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>50</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+          </surface>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+07</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>1000</mu>
+                <mu2>1000</mu2>
+              </ode>
+            </friction>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='table_top_link_visual'>
+          <pose frame=''>0 0 0.525 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 2 0.05</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Wood</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='table_top_link_visual_leg1_link'>
+          <pose frame=''>0.5 1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='table_top_link_visual_leg2_link'>
+          <pose frame=''>-0.5 1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='table_top_link_visual_leg3_link'>
+          <pose frame=''>0.5 -1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='table_top_link_visual_leg4_link'>
+          <pose frame=''>-0.5 -1 0.275 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.55</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>__default__</uri>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <gravity>1</gravity>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>1</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>1 0 0.01 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>850 569000000</sim_time>
+      <real_time>323 998608421</real_time>
+      <wall_time>1460202352 392669562</wall_time>
+      <model name='apple'>
+        <pose frame=''>0.999499 0.009704 0.553563 0.022014 -0.036909 0.001011</pose>
+        <link name='apple_link'>
+          <pose frame=''>0.999499 0.009704 0.553563 0.022014 -0.036909 0.001011</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-1.6e-05 -0.000116 -1.8e-05 -0.019051 0.29059 0.000391</acceleration>
+          <wrench>-1.6e-05 -0.000116 -1.8e-05 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='banana'>
+        <pose frame=''>0.771497 0.042062 0.554137 -0.000406 -8.6e-05 2.2e-05</pose>
+        <link name='banana_link'>
+          <pose frame=''>0.771497 0.042062 0.554137 -0.000406 -8.6e-05 2.2e-05</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>3.9e-05 0.002295 -0.015931 0.390794 -0.697335 -4.3e-05</acceleration>
+          <wrench>3.9e-05 0.002295 -0.015931 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='cheezeit'>
+        <pose frame=''>0.741336 0.322859 0.554133 5.9e-05 -0.000274 -5.4e-05</pose>
+        <link name='cheezeit_link'>
+          <pose frame=''>0.741336 0.322859 0.554133 5.9e-05 -0.000274 -5.4e-05</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0.000122 0.002709 -0.097056 0.470906 0.547414 0.000132</acceleration>
+          <wrench>-0.000122 0.002709 -0.097056 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='coke'>
+        <pose frame=''>0.744991 -0.104366 0.557276 -0.046012 0.013914 -0.001645</pose>
+        <link name='coke_can'>
+          <pose frame=''>0.744991 -0.104366 0.557276 -0.046012 0.013914 -0.001645</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 -0 0 0 -0 0</acceleration>
+          <wrench>0 -0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='foam_brick'>
+        <pose frame=''>0.86328 -0.06708 0.554125 7.2e-05 -3.7e-05 -4e-06</pose>
+        <link name='foam_brick_link'>
+          <pose frame=''>0.86328 -0.06708 0.554125 7.2e-05 -3.7e-05 -4e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>1e-05 -0.000669 0.000429 -0.113924 -0.176991 0</acceleration>
+          <wrench>1e-05 -0.000669 0.000429 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='musturd'>
+        <pose frame=''>0.848659 -0.470551 0.554127 0.000146 0.00034 6e-06</pose>
+        <link name='musturd_link'>
+          <pose frame=''>0.848659 -0.470551 0.554127 0.000146 0.00034 6e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>8e-06 0.000342 -0.001733 0.05828 -0.134414 3e-06</acceleration>
+          <wrench>8e-06 0.000342 -0.001733 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='orange'>
+        <pose frame=''>1.00046 -0.149702 0.55289 0.038046 0.007436 -0.020746</pose>
+        <link name='orange_link'>
+          <pose frame=''>1.00046 -0.149702 0.55289 0.038046 0.007436 -0.020746</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 1.7e-05 -5.2e-05 0.002458 -0.003445 -1.2e-05</acceleration>
+          <wrench>0 1.7e-05 -5.2e-05 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plastic_cup'>
+        <pose frame=''>1.00138 0.142337 0.554126 2.7e-05 1.4e-05 0.00169</pose>
+        <link name='plastic_cup_blue_link'>
+          <pose frame=''>1.00138 0.142337 0.554126 2.7e-05 1.4e-05 0.00169</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-1e-06 -9.6e-05 0.000182 -0.016343 0.023373 5.42249e-20</acceleration>
+          <wrench>-1e-06 -9.6e-05 0.000182 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='pringles'>
+        <pose frame=''>0.745 -0.267425 0.554125 6.8e-05 4e-06 -5.16988e-26</pose>
+        <link name='pringles_link'>
+          <pose frame=''>0.745 -0.267425 0.554125 6.8e-05 4e-06 -5.16988e-26</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 0 -4e-06 7e-06 0.006322 0</acceleration>
+          <wrench>-0 0 -4e-06 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='pudding'>
+        <pose frame=''>0.92552 -0.31485 0.554122 7.8e-05 -8.2e-05 -8.27181e-25</pose>
+        <link name='pudding_link'>
+          <pose frame=''>0.92552 -0.31485 0.554122 7.8e-05 -8.2e-05 -8.27181e-25</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-0 -0.00013 0.000642 -0.022193 0.006051 -2.71056e-20</acceleration>
+          <wrench>-0 -0.00013 0.000642 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='salt_shaker'>
+        <pose frame=''>0.827319 0.163594 0.554125 3.8e-05 -9.8e-05 -8.27181e-25</pose>
+        <link name='salt_shaker_link'>
+          <pose frame=''>0.827319 0.163594 0.554125 3.8e-05 -9.8e-05 -8.27181e-25</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-1e-06 -0.000133 0.000251 -0.022601 0.017656 -1e-06</acceleration>
+          <wrench>-1e-06 -0.000133 0.000251 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='table'>
+        <pose frame=''>0.981542 -0.033078 0.01 0 -0 0</pose>
+        <link name='table_top_link'>
+          <pose frame=''>0.981542 -0.033078 0.01 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='tennis_ball'>
+        <pose frame=''>0.695233 -0.446036 0.554124 9.9e-05 -8e-05 1.65436e-24</pose>
+        <link name='tennis_ball_link'>
+          <pose frame=''>0.695233 -0.446036 0.554124 9.9e-05 -8e-05 1.65436e-24</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 -2.3e-05 7.3e-05 -0.003964 -0.00474 0</acceleration>
+          <wrench>0 -2.3e-05 7.3e-05 0 -0 0</wrench>
+        </link>
+      </model>
+      <iterations>0</iterations>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>2.04007 -2.27144 2.18931 0 0.657798 2.10737</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+    <model name='tennis_ball'>
+      <link name='tennis_ball_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='tennis_ball_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/tennis_ball/tennis_ball.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='tennis_ball_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/tennis_ball/tennis_ball.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 -0.85 0.55 0 -0 0</pose>
+    </model>
+    <model name='salt_shaker'>
+      <link name='salt_shaker_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='salt_shaker_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/salt_shaker/salt_shaker.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='salt_shaker_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/salt_shaker/salt_shaker.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.745 0.52 0.55 0 -0 0</pose>
+    </model>
+    <model name='orange'>
+      <link name='orange_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='orange_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/orange/orange.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='orange_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/orange/orange.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 -0.15 0.55 0 -0 0</pose>
+    </model>
+    <model name='pringles'>
+      <link name='pringles_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='pringles_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/pringles/pringles.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='pringles_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/pringles/pringles.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.745 -0.15 0.55 0 -0 0</pose>
+    </model>
+    <model name='plastic_cup'>
+      <link name='plastic_cup_blue_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='plastic_cup_blue_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/plastic_cup_blue/plastic_cup_blue.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='plastic_cup_blue_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/plastic_cup_blue/plastic_cup_blue.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 0.13 0.55 0 -0 0</pose>
+    </model>
+    <model name='pudding'>
+      <link name='pudding_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='pudding_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/pudding/pudding.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='pudding_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/pudding/pudding.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 -0.35 0.55 0 -0 0</pose>
+    </model>
+    <model name='banana'>
+      <link name='banana_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='banana_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/banana/banana.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='banana_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/banana/banana.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.745 0.07 0.55 0 -0 0</pose>
+    </model>
+    <model name='foam_brick'>
+      <link name='foam_brick_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='foam_brick_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/foam_brick/foam_brick.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='foam_brick_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/foam_brick/foam_brick.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 0.25 0.55 0 -0 0</pose>
+    </model>
+    <model name='cheezeit'>
+      <link name='cheezeit_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='cheezeit_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/cheezeit/cheezeit.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='cheezeit_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/cheezeit/cheezeit.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.745 0.32 0.55 0 -0 0</pose>
+    </model>
+    <model name='apple'>
+      <link name='apple_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='apple_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/apple/apple.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='apple_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/apple/apple.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 0.07 0.55 0 -0 0</pose>
+    </model>
+    <model name='coke'>
+      <link name='coke_can'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0.06 0 -0 0</pose>
+          <mass>0.39</mass>
+          <inertia>
+            <ixx>0.00058</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00058</iyy>
+            <iyz>0</iyz>
+            <izz>0.00019</izz>
+          </inertia>
+        </inertial>
+        <collision name='coke_can_collision'>
+          <pose frame=''>0 0 -0.18 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/coke_Can/coke_can2.dae</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+08</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='coke_can_visual'>
+          <pose frame=''>0 0 -0.18 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>0.001 0.001 0.001</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/coke_Can/coke_can2.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>0.745 -0.05 0.55 0 -0 0</pose>
+    </model>
+    <model name='musturd'>
+      <link name='musturd_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>100</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <collision name='musturd_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/musturd/musturd.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='musturd_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/root/catkin_ws/src/object_models/models/IROS/stl/musturd/musturd.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>1 -0.55 0.55 0 -0 0</pose>
+    </model>
+  </world>
+</sdf>

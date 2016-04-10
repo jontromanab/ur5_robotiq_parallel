@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ur5_robotiq_parallel_bringup)/worlds/table.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+   
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot  -z 0.375 -Y 3.14 " respawn="false" output="screen" />
+
+  <include file="$(find ur5_robotiq_parallel_bringup)/launch/robot_bringup.launch">
+   <arg name="limited" value="$(arg limited)"/>
+  </include>
+
+  <!-- Coke Can -->
+<node name="spawn_coke" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/coke_can.urdf -model coke -x 0.745 -y -0.05 -z 0.55"
+   respawn="false" output="screen" />
+
+
+
+<!-- Pringles -->
+<node name="spawn_pringles" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/pringles.urdf -model pringles -x 0.745 -y -0.15 -z 0.55"
+   respawn="false" output="screen" />
+
+<!-- Banana -->
+<node name="spawn_banana" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/banana.urdf -model banana -x 0.745 -y 0.07 -z 0.55"
+   respawn="false" output="screen" />
+
+<!-- Apple -->
+<node name="spawn_apple" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/apple.urdf -model apple -x 1 -y 0.07 -z 0.55"
+   respawn="false" output="screen" />
+
+
+<!-- Orange -->
+<node name="spawn_orange" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/orange.urdf -model orange -x 1 -y -0.15 -z 0.55"
+   respawn="false" output="screen" />
+
+<!-- pudding -->
+<node name="spawn_pudding" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/pudding.urdf -model pudding -x 1 -y -0.35 -z 0.55"
+   respawn="false" output="screen" />
+
+
+<!-- Musturd -->
+<node name="spawn_musturd" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/musturd.urdf -model musturd -x 1 -y -0.55 -z 0.55"
+   respawn="false" output="screen" />
+
+<!-- ball -->
+<node name="spawn_ball" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/tennis_ball.urdf -model tennis_ball -x 1 -y -0.85 -z 0.55"
+   respawn="false" output="screen" />
+
+
+<!-- Plastic Cups -->
+<node name="spawn_plastic_cup" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/plastic_cup_blue.urdf -model plastic_cup -x 1 -y 0.13 -z 0.55"
+   respawn="false" output="screen" />
+
+<!-- Foam Brick -->
+<node name="spawn_brick" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/foam_brick.urdf -model foam_brick -x 1 -y 0.25 -z 0.55"
+   respawn="false" output="screen" />
+
+<!-- Cheezeit Box -->
+<node name="spawn_cheezeit" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/cheezeit.urdf -model cheezeit -x 0.745 -y 0.32 -z 0.55 "
+   respawn="false" output="screen" />
+
+<!-- Salt Shaker -->
+<node name="spawn_salt_shaker" pkg="gazebo_ros" type="spawn_model" 
+   args="-urdf -file $(find object_models)/models/IROS/urdf/salt_shaker.urdf -model salt_shaker -x 0.745 -y 0.52 -z 0.55  "
+   respawn="false" output="screen" />
+
+</launch>
